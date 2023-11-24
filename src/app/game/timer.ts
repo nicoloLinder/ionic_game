@@ -6,7 +6,7 @@ export default class Timer {
   numberValues!:Entity[];
   numberIndex!:number;
   seconds = 60;
-  minutes = 40;
+  minutes = 10;
   
   constructor(scene: MainScene, x: number, y: number, spriteIndex: number) {
     this.numberValues = []
@@ -27,11 +27,16 @@ export default class Timer {
       this.minutes -= 1;
     }
 
+    if(this.minutes < 0){
+      return false;
+    }
+
     this.numberValues[0].setFrame(this.numberIndex+this.seconds%10);
     this.numberValues[1].setFrame(this.numberIndex+Math.floor(this.seconds/10)%10);
     this.numberValues[2].setFrame(this.numberIndex+10);
     this.numberValues[3].setFrame(this.numberIndex+this.minutes%10);
     this.numberValues[4].setFrame(this.numberIndex+Math.floor(this.minutes/10)%10);
+    return false;
   }
 
 }

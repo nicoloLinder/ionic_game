@@ -48,7 +48,7 @@ export default class MainScene extends Phaser.Scene {
     for (let row = 0; row < this.sys.game.canvas.height/16; row++) {
       let subarry = [];
       for (let column = 0; column < this.sys.game.canvas.width/16; column++) {
-        if(row == 0 || row == this.sys.game.canvas.height/16-1 || column == 0 || column == this.sys.game.canvas.width/16-1){
+        if(row == 0 || row == 1 || row == this.sys.game.canvas.height/16-1 || column == 0 || column == this.sys.game.canvas.width/16-1){
           subarry.push(0);
         }else{
           subarry.push(this.environment[this.getRandomInt(0,this.environment.length-1)]);
@@ -72,9 +72,11 @@ export default class MainScene extends Phaser.Scene {
 
     this.cow = new Entity(this, 8 * this.getRandomInt(2, 10), 8 * this.getRandomInt(2, 10), this.cowIndex);
     this.cow.x = 16 * this.getRandomInt(2, 9) - 8;
-    this.cow.y = 16 * this.getRandomInt(2, 8) - 8;
+    this.cow.y = 16 * this.getRandomInt(3, 8) - 8;
 
     this.ufo = new Entity(this, 8, 8, this.ufoIndex);
+    this.ufo.x = 16 * this.getRandomInt(2, 9) - 8;
+    this.ufo.y = 16 * this.getRandomInt(3, 8) - 8;
     this.scoreCounter = new Score(this, 16 * 10 - 8, 8, 17 * 49 + 49 - 14);
     this.timer = new Timer(this, 16 * 5 - 8, 8, 17 * 49 + 49 - 14);
   }
@@ -120,7 +122,7 @@ export default class MainScene extends Phaser.Scene {
 
     if (this.ufo.y == this.cow.y && this.ufo.x == this.cow.x) {
       this.cow.x = 16 * this.getRandomInt(2, 9) - 8;
-      this.cow.y = 16 * this.getRandomInt(2, 8) - 8;
+      this.cow.y = 16 * this.getRandomInt(3, 8) - 8;
 
       this.ufo.Smile();
       this.scoreCounter.IncrementCount();
