@@ -1,5 +1,6 @@
 import Entity from "./entity";
 import Score from "./score";
+import Timer from "./timer";
 
 export default class MainScene extends Phaser.Scene {
   private keyLeft: Phaser.Input.Keyboard.Key | undefined;
@@ -14,6 +15,7 @@ export default class MainScene extends Phaser.Scene {
   ufo!: Entity;
   cow!: Entity;
   scoreCounter!: Score;
+  timer!: Timer;
 
 //  private tileset Phaser.Tilemaps.Tileset | undefined;
 
@@ -74,6 +76,7 @@ export default class MainScene extends Phaser.Scene {
 
     this.ufo = new Entity(this, 8, 8, this.ufoIndex);
     this.scoreCounter = new Score(this, 16 * 10 - 8, 8, 17 * 49 + 49 - 14);
+    this.timer = new Timer(this, 16 * 5 - 8, 8, 17 * 49 + 49 - 14);
   }
 
   getRandomInt(min: number, max: number) {
@@ -84,6 +87,7 @@ export default class MainScene extends Phaser.Scene {
 
   override update(time: number, delta: number) {
     this.ufo.update(time, delta);
+    this.timer.DecreaseCount();
     // @ts-ignore
     if (Phaser.Input.Keyboard.JustDown(this.keyLeft)) {
       this.ufo.x -= 16;
