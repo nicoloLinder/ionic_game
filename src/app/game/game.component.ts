@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Phaser from 'phaser';
 import MainScene from './main-scene';
+import GameoverScene from "./gameover-scene";
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -25,7 +26,7 @@ export class GameComponent  implements OnInit {
         default: 'arcade',
         arcade: {debug:false}
       },
-      scene: [MainScene]
+      scene: [GameoverScene]
     };
   }
   ngOnInit() {
